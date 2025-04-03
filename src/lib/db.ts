@@ -60,6 +60,7 @@ export interface Parkering {
 export interface Parkeringsplass {
     id: number;
     navn?: string;
+    plasser?: number;
 }
 
 //En type som er en av typene som kan hentes fra databasen
