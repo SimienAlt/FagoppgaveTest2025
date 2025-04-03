@@ -6,9 +6,9 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
         <>
             <div className="logedin-layout">
                 <Navigation links={[
-                    { path: "/admin/parkeringsoversikt", text: "Parkeringsoversikt" },
-                    { path: "/admin/biler", text: "Biler" },
-                    { path: "/admin/personalia", text: "Personalia" },
+                    { path: "/parkeringsoversikt", text: "Parkeringsoversikt" },
+                    { path: "/biler", text: "Biler" },
+                    { path: "/personalia", text: "Personalia" },
                 ]} />
                 {children}
             </div>
