@@ -7,12 +7,14 @@ interface LinkObject {
     path: string;
     text: string;
 }
+
+/** Lager en navigasjonsmeny. Den har posisjon: relative, og trenger å plasseres på venstre side av skjermen for at mobilversjon skal fungere */
 export default function Navigation({ links }: { links: LinkObject[] }) {
     const path = usePathname();
     const [navOpen, setNavOpen] = useState(false);
     return (
         <nav className={navOpen ? "open" : "closed"}>
-            {links.map(obj => <Link href={obj.path} className={path === obj.path ? "active" : undefined}>{obj.text}</Link>)}
+            {links.map((obj, index) => <Link key={index} href={obj.path} className={path === obj.path ? "active" : undefined}>{obj.text}</Link>)}
             <button className="toggle-nav" onClick={() => setNavOpen(!navOpen)}>
                 <svg className="elipsis" width="53" height="155" viewBox="0 0 53 155" fill="none">
                     <ellipse cx="4.5" cy="77.5" rx="48.5" ry="77.5" fill="#626262" />
