@@ -30,7 +30,7 @@ export interface Bil {
 
 export interface Bruker {
     id: number;
-    Brukernavn?: string;
+    brukernavn?: string;
     passord?: string;
     tlf?: string;
     epost?: string;

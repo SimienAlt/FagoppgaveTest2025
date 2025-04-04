@@ -16,3 +16,13 @@ export async function GetSession(cookies: ReadonlyRequestCookies): Promise<IronS
 
     return session;
 }
+
+export async function IsAdmin(cookies: ReadonlyRequestCookies | Promise<ReadonlyRequestCookies>) {
+    const session = await GetSession(await cookies);
+    return session.isAdmin;
+}
+
+export async function IsUser(cookies: ReadonlyRequestCookies | Promise<ReadonlyRequestCookies>) {
+    const session = await GetSession(await cookies);
+    return session.isUser;
+}
