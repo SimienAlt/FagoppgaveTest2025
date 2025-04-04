@@ -1,5 +1,6 @@
 "use client"
 
+import ErrorMessage from "@/components/ErrorMessage";
 import { FormEvent, useRef, useState } from "react"
 
 
@@ -51,7 +52,7 @@ export default function Client({
 
     return (
         <form onSubmit={handleSubmit} style={{ width: "100%", maxWidth: "500px", padding: "0px 0px 16px", display: "flex", flexDirection: "column", gap: "32px" }}>
-            <div style={{ height: "20px" }}>{error !== null && <p style={{ color: "red", fontSize: "18px" }}>{error}</p>}</div>
+            <ErrorMessage message={error} />
             <div className="input-label-pair">
                 <label htmlFor="name">Brukernavn</label>
                 <input name="name" type="text" onChange={(e) => username.current = e.target.value} />

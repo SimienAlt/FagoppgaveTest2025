@@ -5,6 +5,7 @@ export interface SessionData {
     isAdmin: boolean;
     isUser: boolean;
     id: number;
+    mabyttepassord: boolean;
 }
 
 export async function GetSession(cookies: ReadonlyRequestCookies): Promise<IronSession<SessionData>> {

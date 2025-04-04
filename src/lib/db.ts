@@ -37,7 +37,7 @@ export interface Bruker {
     address?: string;
     postcode?: string;
     city?: string,
-    mabyttepasord?: boolean;
+    mabyttepassord?: boolean;
 }
 
 export interface Etasjer {

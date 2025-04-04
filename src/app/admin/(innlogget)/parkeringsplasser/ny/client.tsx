@@ -1,5 +1,6 @@
 "use client"
 
+import ErrorMessage from "@/components/ErrorMessage";
 import { FormEvent, useRef, useState } from "react"
 
 interface Etasje {
@@ -30,7 +31,7 @@ export default function Client({ onSubmit }: { onSubmit: (name: string, etasjer:
 
     return (
         <form onSubmit={handleSubmit} style={{ width: "100%", maxWidth: "500px", padding: "16px 0px", display: "flex", flexDirection: "column", gap: "32px" }}>
-            <div style={{ height: "20px" }}>{error !== null && <p style={{ color: "red", fontSize: "18px" }}>{error}</p>}</div>
+            <ErrorMessage message={error} />
             <div className="input-label-pair">
                 <label htmlFor="name">Navn</label>
                 <input name="name" type="text" onChange={(e) => name.current = e.target.value} />

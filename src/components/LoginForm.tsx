@@ -1,6 +1,7 @@
 "use client"
 import { FormEvent, useRef, useState } from "react";
 import "./loginForm.css"
+import ErrorMessage from "./ErrorMessage";
 /** */
 export default function LoginForm({ onSubmit }: { onSubmit: (username: string, pwd: string) => Promise<void | { Error: string }> }) {
     const username = useRef("");
@@ -26,7 +27,7 @@ export default function LoginForm({ onSubmit }: { onSubmit: (username: string, p
     return (
         <form className="login-form" onSubmit={handleSubmit}>
             <h1>Logg inn</h1>
-            <div style={{ height: "20px" }}>{error !== null && <p style={{ color: "red", fontSize: "18px" }}>{error}</p>}</div>
+            <ErrorMessage message={error} />
             <div className="input-label-pair">
                 <label htmlFor="username">Brukernavn</label>
                 <input name="username" type="text" onChange={(e) => username.current = e.target.value} />

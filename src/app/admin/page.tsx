@@ -28,6 +28,7 @@ export default function Page() {
             session.isAdmin = true;
             session.isUser = false;
             session.id = adminuser.id;
+            session.mabyttepassord = false;
             await session.save();
 
             //redirecter til adminside
