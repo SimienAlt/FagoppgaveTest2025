@@ -53,7 +53,6 @@ export default async function UserLayout({ children }: { children: ReactNode }) 
                 ]} />
                 {children}
             </div>
-            <span className="admin-tag">Administrator</span>
         </>
     )
 }

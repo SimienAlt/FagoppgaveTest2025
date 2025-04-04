@@ -10,8 +10,8 @@ export interface Administrator {
 
 export interface ApiToken {
     id: number;
-    navn?: string;
-    verdi?: string;
+    brukernavn?: string;
+    passord?: string;
 }
 
 export interface Avvikslogg {
