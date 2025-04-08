@@ -8,8 +8,9 @@ interface Etasje {
     plasser: string;
 }
 
-export default function Client({ onSubmit }: { onSubmit: (name: string, etasjer: Etasje[]) => Promise<void | { Error: string }> }) {
+export default function Client({ onSubmit }: { onSubmit: (name: string, price: number, etasjer: Etasje[]) => Promise<void | { Error: string }> }) {
     const name = useRef("");
+    const price = useRef(0);
     const [etasjer, setEtasjer] = useState<Etasje[]>([{ name: "1. etg", plasser: "0" }])
     const [error, setError] = useState<string | null>(null);
 
@@ -18,8 +19,14 @@ export default function Client({ onSubmit }: { onSubmit: (name: string, etasjer:
         e.preventDefault();
         e.stopPropagation();
 
+        //sjekker at pris ikke er NaN
+        if (Number.isNaN(price.current)) {
+            setError("Pris er ikke et tall");
+            return;
+        }
+
         //Prøver å lage parkeringsplass
-        const res = await onSubmit(name.current, etasjer);
+        const res = await onSubmit(name.current, price.current, etasjer);
 
         //Håndterer feil og viser feilmelding
         if (res?.Error) {
@@ -35,6 +42,10 @@ export default function Client({ onSubmit }: { onSubmit: (name: string, etasjer:
             <div className="input-label-pair">
                 <label htmlFor="name">Navn</label>
                 <input name="name" type="text" onChange={(e) => name.current = e.target.value} />
+            </div>
+            <div className="input-label-pair">
+                <label htmlFor="pris">Pris</label>
+                <input name="pris" type="number" onChange={(e) => price.current = Number(e.target.value)} />
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
                 {etasjer.map((obj, index) => (

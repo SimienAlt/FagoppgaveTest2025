@@ -4,7 +4,7 @@ import Link from "next/link";
 export default async function Page() {
     //Henter parkeringsplasser fra database
     const db = new DB;
-    const parkeringsplasser = await db.Get`SELECT parkeringsplass.id, parkeringsplass.navn, sum(etasjer.plasser) as plasser FROM parkeringsplass JOIN etasjer ON parkeringsplass.id = etasjer.parkeringsplass_id GROUP BY parkeringsplass.id` as Parkeringsplass[];
+    const parkeringsplasser = await db.Get`SELECT parkeringsplass.id, parkeringsplass.navn, pris, sum(etasjer.plasser) as plasser FROM parkeringsplass JOIN etasjer ON parkeringsplass.id = etasjer.parkeringsplass_id GROUP BY parkeringsplass.id` as Parkeringsplass[];
     return (
         <main>
             <div className="loged-in-heading">
@@ -17,6 +17,7 @@ export default async function Page() {
                         <tr>
                             <th>ID</th>
                             <th>Navn</th>
+                            <th>Pris</th>
                             <th>Plasser</th>
                             <th>Vis mer</th>
                         </tr>
@@ -24,6 +25,7 @@ export default async function Page() {
                             <tr key={obj.id} className={(index & 1) === 0 ? "even" : "odd"}>
                                 <td>{obj.id}</td>
                                 <td>{obj.navn}</td>
+                                <td>{obj.pris}</td>
                                 <td>{obj.plasser}</td>
                                 <td><Link href={`/admin/parkeringsplasser/${obj.id}`}>Vis mer</Link></td>
                             </tr>

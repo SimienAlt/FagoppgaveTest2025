@@ -26,7 +26,8 @@ h1 {
   font-size: 18px;
 }
 
-.input-label-pair input {
+.input-label-pair input,
+.input-label-pair select {
   border-radius: 8px;
   padding: 8px;
   height: 40px;
@@ -36,7 +37,8 @@ h1 {
   background-color: #414141;
 }
 
-.input-label-pair input:focus {
+.input-label-pair input:focus,
+.input-label-pair select:focus {
   box-shadow: 0px 0px 5px #5bbe3d;
 }
 
@@ -165,7 +167,7 @@ form .submit-btn {
   border-collapse: separate;
 }
 
-.main-content>table>tbody{
+.main-content>table>tbody {
   border-radius: 8px;
 }
 
@@ -183,7 +185,7 @@ form .submit-btn {
   border-top-right-radius: 8px;
 }
 
-.main-content>table tr:last-child{
+.main-content>table tr:last-child {
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 

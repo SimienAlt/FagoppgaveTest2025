@@ -49,17 +49,19 @@ export interface Etasjer {
 
 export interface Parkering {
     id: number;
-    startdato?: Date;
-    sluttdato?: Date;
+    startdatotid?: Date;
+    sluttdatotid?: Date;
     pris?: number;
     parkeringsplass_id?: number;
     bil_id?: number;
     etasjer_id?: number;
+    regnr?: string;
 }
 
 export interface Parkeringsplass {
     id: number;
     navn?: string;
+    pris?: number;
     plasser?: number;
 }
 
@@ -68,7 +70,7 @@ export type SelectResult = Administrator | ApiToken | Avvikslogg | Bil | Bruker 
 
 //#endregion
 class DB {
-    private sql: NeonQueryFunction<false, false>;
+    sql: NeonQueryFunction<false, false>;
     constructor() {
         //Oppret kobling til database
         this.sql = neon(`${process.env.DATABASE_URL}`);
@@ -114,11 +116,35 @@ class DB {
         }
     }
 
+    ItemExists = async (query: TemplateStringsArray, ...values: any[]): Promise<boolean> => {
+        //Sjekker at det er en "Select" query
+        if (!/^(SELECT|Select|select)/.test(query.toString())) {
+            throw new Error("Query must be a Select");
+        }
+
+        //Kjører query
+        const result = await this.Run(query, ...values);
+
+        //Sjekker om det er funnet et resultat
+        return Array.isArray(result) && result.length > 0;
+    }
+
     Run = (query: TemplateStringsArray, ...values: any[]) => {
         //kjører query med databasekobling
         return (Array.isArray(values) && values.length > 0 ? this.sql(query, ...values) : this.sql(query));
     }
-}
 
+    RunString = async (query: string, values: any[]) => {
+        let raw = query.split("$");
+        const strings: TemplateStringsArray = Object.assign([...raw], { raw });
+        return await this.Run(strings, ...values);
+    }
+
+    GetString = async (query: string, values: any[]) => {
+        let raw = query.split("$");
+        const strings: TemplateStringsArray = Object.assign([...raw], { raw });
+        return await this.Get(strings, ...values);
+    }
+}
 
 export default DB

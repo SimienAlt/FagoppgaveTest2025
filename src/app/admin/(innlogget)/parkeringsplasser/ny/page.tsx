@@ -11,7 +11,7 @@ interface Etasje {
 }
 
 export default function Page() {
-    async function onSubmit(name: string, etasjer: Etasje[]) {
+    async function onSubmit(name: string, price: number, etasjer: Etasje[]) {
         "use server"
         //Sjekker at bruker faktisk er logget inn som admin
         if (!(await IsAdmin(cookies()))) redirect("/admin");
@@ -20,6 +20,11 @@ export default function Page() {
         if (typeof name !== "string" || name.length > 50) {
             return { Error: "Navn må være en text med max 50 bokstaver" };
         }
+
+        if (typeof price !== "number" || Number.isNaN(price)) {
+            return { Error: "Pris må være et tall" };
+        }
+
         if (etasjer.some(obj => typeof obj.name !== "string" || obj.name.length > 10)) {
             return { Error: "Etasje navn må være en text med max 10 bokstaver" };
         }
@@ -39,7 +44,7 @@ export default function Page() {
         //lager parkeringsplass
         let parkeringsplass: Parkeringsplass;
         try {
-            await db.Run`INSERT INTO parkeringsplass (navn) VALUES (${name})`
+            await db.Run`INSERT INTO parkeringsplass (navn, pris) VALUES (${name}, ${price})`
             parkeringsplass = await db.GetFirst`SELECT id FROM parkeringsplass where navn = ${name}` as Parkeringsplass;
         } catch {
             return { Error: "Kunne ikke lage parkeringsplass" };
