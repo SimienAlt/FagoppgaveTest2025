@@ -1,6 +1,4 @@
-import DB from "@/lib/db";
-
-export default async function Page({ id }: { id: string }) {
+export default async function Page() {
 
     return (
         <main>
