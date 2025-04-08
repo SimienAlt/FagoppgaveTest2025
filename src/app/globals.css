@@ -160,56 +160,56 @@ form .submit-btn {
 
 }
 
-.main-content>table {
+.main-content table {
   width: 100%;
   color: white;
   border-radius: 8px;
   border-collapse: separate;
 }
 
-.main-content>table>tbody {
+.main-content table>tbody {
   border-radius: 8px;
 }
 
-.main-content>table tr th {
+.main-content table tr th {
   text-align: left;
   background-color: #555555;
 
 }
 
-.main-content>table tr th:first-child {
+.main-content table tr th:first-child {
   border-top-left-radius: 8px;
 }
 
-.main-content>table tr th:last-child {
+.main-content table tr th:last-child {
   border-top-right-radius: 8px;
 }
 
-.main-content>table tr:last-child {
+.main-content table tr:last-child {
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 
 }
 
-.main-content>table tr:last-child td:first-child {
+.main-content table tr:last-child td:first-child {
   border-bottom-left-radius: 8px;
 }
 
-.main-content>table tr:last-child td:last-child {
+.main-content table tr:last-child td:last-child {
   border-bottom-right-radius: 8px;
 }
 
-.main-content>table tr td,
-.main-content>table tr th {
+.main-content table tr td,
+.main-content table tr th {
   padding: 8px;
 }
 
-.main-content>table tr.even {
+.main-content table tr.even {
   background-color: #838383;
 
 }
 
-.main-content>table tr.odd {
+.main-content table tr.odd {
   background-color: #555555;
 
 }
